@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Instagram Multi Player</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-center">
+  <div class="container">
+    <h1>🔥 Instagram Multi Video Player</h1>
+
+    <textarea id="links" placeholder="5 سے 30 Instagram links ایک لائن میں ایک"></textarea>
+    <button onclick="loadVideos()">Videos Load کریں</button>
+  </div>
+</div>
+
+<div id="videoGrid"></div>
+
+<script>
+function loadVideos() {
+  const links = document.getElementById("links").value.trim().split("\n");
+  const grid = document.getElementById("videoGrid");
+  grid.innerHTML = "";
+
+  if (links.length < 5 || links.length > 30) {
+    alert("5 سے 30 links ڈالیں");
+    return;
+  }
+
+  links.forEach(link => {
+    let url = link.trim();
+    if (!url.endsWith("/")) url += "/";
+    url += "embed";
+    const iframe = document.createElement("iframe");
+    iframe.src = url;
+    iframe.allow = "autoplay";
+    grid.appendChild(iframe);
+  });
+}
+</script>
+
+</body>
+</html>
